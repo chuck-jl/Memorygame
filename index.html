@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Memory Game!</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Memory Game!</h1>
+    <section id ="controls">
+      <p id="highscore">Highest score: 0</p>
+      <hr>
+      <button id="start">Start</button>
+      <button id="restart">Reshuffle</button>
+      <hr>
+      <form>
+        <label for="">
+          Assign the scale: 
+          <input type="number" id ="scale" value=10>
+        </label>
+        <button>Submit</button>
+      </form>
+      <hr>
+      <p id="guess">Guesses made so far: 0</p>
+      <p id="rightguess">Right guesses made so far: 0</p>
+    </section>
+    <div id="game">
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
