@@ -155,6 +155,8 @@ restart.addEventListener("click",function(){
 document.addEventListener("DOMContentLoaded",function(){
   if(window.localStorage.highscore){
     highscore.innerText = "Highest score: "+JSON.parse(localStorage.highscore);
+  }else{
+    localStorage.setItem('highscore','0');
   }
 })
 
