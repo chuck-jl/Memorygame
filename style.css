@@ -1,15 +1,91 @@
-#game div {
+.flipCard {
+	-webkit-perspective: 800;
+	-ms-perspective: 800;
+	-moz-perspective: 800;
+	-o-perspective: 800;
+	width: 98%;
+	height: 195px;
+	position: relative;
+	margin: 50px auto;
+	
+}
+.flipCard .card.flipped {
+	transform: rotatey(-180deg);
+	-ms-transform: rotatey(-180deg); /* IE 9 */
+	-moz-transform: rotatey(-180deg); /* Firefox */
+	-webkit-transform: rotatey(-180deg); /* Safari and Chrome */
+	-o-transform: rotatey(-180deg); /* Opera */
+}
+.flipCard .card {
+	width: 100%;
+	height: 100%;
+	-webkit-transform-style: preserve-3d;
+	-webkit-transition: 0.5s;
+	-moz-transform-style: preserve-3d;
+	-moz-transition: 0.5s;
+	-ms-transform-style: preserve-3d;
+	-ms-transition: 0.5s;
+	-o-transform-style: preserve-3d;
+	-o-transition: 0.5s;
+	transform-style: preserve-3d;
+	transition: 0.5s;
+}
+.flipCard .card .side {
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+	position: absolute;
+	box-sizing: border-box;
+	z-index: 2;
+	backface-visibility: hidden; /* W3C */
+	-webkit-backface-visibility: hidden; /* Safari & Chrome */
+	-moz-backface-visibility: hidden; /* Firefox */
+	-ms-backface-visibility: hidden; /* Internet Explorer */
+	-o-backface-visibility: hidden; /* Opera */
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+	overflow: auto;
+	border: 1px solid #413e3e;
+    border-width: 2px;
+	border-radius: 10px;
+}
+.flipCard .card .back {
+	
+	border: 1px solid #413e3e;
+    border-width: 2px;
+	border-radius: 10px;
+	background: white;
+	color: black;
+	transform: rotatey(-180deg);
+	-ms-transform: rotatey(-180deg); /* IE 9 */
+	-moz-transform: rotatey(-180deg); /* Firefox */
+	-webkit-transform: rotatey(-180deg); /* Safari and Chrome */
+	-o-transform: rotatey(-180deg); /* Opera */
+}
+
+.flipCard .card .front {
+	font-family: Georgia;
+	font-size: 3em;
+	text-align: center;
+	line-height: 160px;
+	color: white;
+	background-image: url(./imagelibrary/bg.jpg);
+}
+.flipCard .card .back {
+	text-align: center;
+	color: black;
+	font-family: Georgia;
+	font-size: 2em;
+	background-repeat: no-repeat;
+    background-size: cover;
+	background-position: center;
+}
+
+#game > div {
 	width: 20%;
 	height: 200px;
 	margin: 10px;
 	display: inline-block;
-	background-repeat: no-repeat;
-    background-size: cover;
-	background-position: center;
-	border: 1px solid #413e3e;
-    border-width: 2px;
-	border-radius: 10px;
-	background-image: url("./imagelibrary/bg.jpg");
+	
 }
 
 * {

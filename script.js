@@ -57,7 +57,17 @@ function createDivsForColors(colorArray) {
 
 		// give it a class attribute for the value we are looping over
 		newDiv.classList.add(color);
-
+		newDiv.classList.add('flipCard');
+		let newDivchild1 = document.createElement('div');
+		newDivchild1.classList.add('card');
+		let newDivchild2 = document.createElement('div');
+		newDivchild2.classList.add('side', 'front');
+		let newDivchild3 = document.createElement('div');
+		newDivchild3.classList.add('side', 'back');
+		
+		newDivchild1.appendChild(newDivchild2);
+		newDivchild1.appendChild(newDivchild3);
+		newDiv.appendChild(newDivchild1);
 		// call a function handleCardClick when a div is clicked on
 		//newDiv.addEventListener("click", handleCardClick);
 
@@ -85,11 +95,13 @@ function handleCardClick(event) {
 	if (!selected1) {
 		selected1 = event.target;
 		selected1.setAttribute('data-selected', true);
-		selected1.style.backgroundImage = `url('${randomcolor[selected1.classList[0]]}')`;
+		selected1.nextElementSibling.style.backgroundImage = `url('${randomcolor[selected1.parentElement.parentElement.classList[0]]}')`;
+		selected1.parentElement.classList.toggle('flipped');
 	} else if (!selected2) {
 		selected2 = event.target;
-		selected2.style.backgroundImage =  `url('${randomcolor[selected2.classList[0]]}')`;
-		if (selected2.hasAttribute('data-selected') || selected1.classList[0] !== selected2.classList[0]) {
+		selected2.nextElementSibling.style.backgroundImage =  `url('${randomcolor[selected2.parentElement.parentElement.classList[0]]}')`;
+		selected2.parentElement.classList.toggle('flipped')
+		if (selected2.hasAttribute('data-selected') || selected1.parentElement.parentElement.classList[0] !== selected2.parentElement.parentElement.classList[0]) {
 			removeallselected();
 			guesses++;
 			guess.innerText = 'Guesses made so far: ' + guesses;
@@ -111,10 +123,10 @@ function handleCardClick(event) {
 function removeallselected() {
 	if (selected1 && selected2) {
 		setTimeout(function() {
-			selected1.style.backgroundImage = `url("./imagelibrary/bg.jpg")`;
+			selected1.parentElement.classList.toggle('flipped')
 			selected1.removeAttribute('data-selected');
 			selected1 = 0;
-      selected2.style.backgroundImage = `url("./imagelibrary/bg.jpg")`;
+            selected2.parentElement.classList.toggle('flipped')
 			selected2 = 0;
 		}, 1000);
 	}
@@ -150,7 +162,6 @@ document.addEventListener('DOMContentLoaded', function() {
 	} else {
 		localStorage.setItem('highscore', '0');
 	}
-	$('.dropdown-menu li').click();
 });
 
 //form to assign scale
