@@ -1,31 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Memory Game!</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <h1>Memory Game!</h1>
-    <section id ="controls">
-      <p id="highscore">Highest score: 0</p>
-      <hr>
-      <button id="start">Start</button>
-      <button id="restart">Reshuffle</button>
-      <hr>
-      <form>
-        <label for="">
-          Assign the scale: 
-          <input type="number" id ="scale" value=10>
-        </label>
-        <button>Submit</button>
-      </form>
-      <hr>
-      <p id="guess">Guesses made so far: 0</p>
-      <p id="rightguess">Right guesses made so far: 0</p>
-    </section>
-    <div id="game">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Memory Game!</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="wrap-control">
+      <h1 class="title">Memory Game!</h1>
+      <section id="controls">
+        <div class="wrap-control-item">
+          <h4>Your record:</h4>
+          <br>
+          <p class="wrap-control-p" id="highscore">Highest score: 0</p>
+        </div>
+        <hr>
+        <div class="game-btn">
+          <button id="start">Start</button>
+          <button id="restart">Reshuffle</button>
+        </div>
+        <hr>
+        <form>
+          <div class="wrap-control-item">
+          <label for="gamemode">Game Mode: </label>
+          <select id="gamemode">
+            <option value="1" selected>Easy</option>
+            <option value="2">Normal</option>
+            <option value="3">Hard</option>
+          </select>
+          <label for="mapsize">Map Size: </label>
+          <select id="mapsize">
+            <option value="1" selected>Small</option>
+            <option value="2">Medium</option>
+            <option value="3">Large</option>
+          </select></div>
+          <button>Submit</button>
+        </form>
+        <hr>
+        <div class="wrap-control-item">
+          <h4>Current seesion:</h4>
+          <br>
+          <p class="wrap-control-p" id="guess">Guesses made so far: 0</p>
+          <p class="wrap-control-p" id="rightguess">Right guesses made so far: 0</p>
+        </div>
+      </section>
     </div>
-    <script src="script.js"></script>
-  </body>
+    <div class="container-game">
+      <div id="game">
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+
 </html>
