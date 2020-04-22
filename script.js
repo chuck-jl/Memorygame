@@ -111,30 +111,24 @@ function handleCardClick(event) {
 	if (event.target.classList.contains('front')) {
 		if (!selected1) {
 			selected1 = event.target;
-			selected1.parentElement.setAttribute('data-selected', true);
 			selected1.nextElementSibling.style.backgroundImage = `url('${randomcolor[
 				selected1.parentElement.parentElement.classList[0]
 			]}')`;
 			selected1.parentElement.classList.toggle('flipped');
 		} else if (!selected2) {
 			selected2 = event.target;
-			if (!selected2.parentElement.hasAttribute('data-selected')) {
-				selected2.nextElementSibling.style.backgroundImage = `url('${randomcolor[
-					selected2.parentElement.parentElement.classList[0]
-				]}')`;
-				selected2.parentElement.classList.toggle('flipped');
-			}
-
+			selected2.nextElementSibling.style.backgroundImage = `url('${randomcolor[
+				selected2.parentElement.parentElement.classList[0]
+			]}')`;
+			selected2.parentElement.classList.toggle('flipped');
 			if (
-				selected2.parentElement.hasAttribute('data-selected') ||
 				selected1.parentElement.parentElement.classList[0] !==
-					selected2.parentElement.parentElement.classList[0]
+				selected2.parentElement.parentElement.classList[0]
 			) {
 				removeallselected();
 				guesses++;
 				guess.innerText = 'Guesses made so far: ' + guesses;
 			} else {
-				selected1.removeAttribute('data-selected');
 				selected1 = 0;
 				selected2 = 0;
 				guesses++;
@@ -152,13 +146,9 @@ function handleCardClick(event) {
 function removeallselected() {
 	if (selected1 && selected2) {
 		setTimeout(function() {
-			if (selected1 === selected2) {
-				selected1.parentElement.classList.toggle('flipped');
-			} else {
-				selected1.parentElement.classList.toggle('flipped');
-				selected2.parentElement.classList.toggle('flipped');
-			}
-			selected1.removeAttribute('data-selected');
+			selected1.parentElement.classList.toggle('flipped');
+			selected2.parentElement.classList.toggle('flipped');
+
 			selected1 = 0;
 			selected2 = 0;
 		}, 1000);
