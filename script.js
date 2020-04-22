@@ -94,14 +94,22 @@ function handleCardClick(event) {
 	console.log('you just clicked', event.target);
 	if (!selected1) {
 		selected1 = event.target;
-		selected1.setAttribute('data-selected', true);
+		selected1.parentElement.setAttribute('data-selected', true);
 		selected1.nextElementSibling.style.backgroundImage = `url('${randomcolor[selected1.parentElement.parentElement.classList[0]]}')`;
 		selected1.parentElement.classList.toggle('flipped');
 	} else if (!selected2) {
 		selected2 = event.target;
-		selected2.nextElementSibling.style.backgroundImage =  `url('${randomcolor[selected2.parentElement.parentElement.classList[0]]}')`;
-		selected2.parentElement.classList.toggle('flipped')
-		if (selected2.hasAttribute('data-selected') || selected1.parentElement.parentElement.classList[0] !== selected2.parentElement.parentElement.classList[0]) {
+		if(selected2.classList.contains("card")){
+			selected2 = selected2.children[0];
+		}else if(selected2.classList.contains("back")){
+			selected2 = selected2.previousElementSibling
+		}
+		if(!selected2.parentElement.hasAttribute('data-selected')){
+			selected2.nextElementSibling.style.backgroundImage =  `url('${randomcolor[selected2.parentElement.parentElement.classList[0]]}')`;
+		    selected2.parentElement.classList.toggle('flipped')
+		}
+		
+		if (selected2.parentElement.hasAttribute('data-selected') || selected1.parentElement.parentElement.classList[0] !== selected2.parentElement.parentElement.classList[0]) {
 			removeallselected();
 			guesses++;
 			guess.innerText = 'Guesses made so far: ' + guesses;
@@ -123,10 +131,15 @@ function handleCardClick(event) {
 function removeallselected() {
 	if (selected1 && selected2) {
 		setTimeout(function() {
-			selected1.parentElement.classList.toggle('flipped')
+			if(selected1 === selected2){
+				selected1.parentElement.classList.toggle('flipped');
+			}
+			else{
+				selected1.parentElement.classList.toggle('flipped');
+                selected2.parentElement.classList.toggle('flipped')
+			}
 			selected1.removeAttribute('data-selected');
 			selected1 = 0;
-            selected2.parentElement.classList.toggle('flipped')
 			selected2 = 0;
 		}, 1000);
 	}
@@ -153,6 +166,7 @@ restart.addEventListener('click', function() {
 	rightguesses = 0;
 	guess.innerText = 'Guesses made so far: ' + guesses;
 	rightguess.innerText = 'Right guesses made so far: ' + rightguesses;
+	start.click();
 });
 
 //localstorage for highest score
@@ -162,6 +176,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	} else {
 		localStorage.setItem('highscore', '0');
 	}
+	start.click();
 });
 
 //form to assign scale
@@ -179,4 +194,6 @@ form.addEventListener('submit', function(e) {
 	rightguesses = 0;
 	guess.innerText = 'Guesses made so far: ' + guesses;
 	rightguess.innerText = 'Right guesses made so far: ' + rightguesses;
+	
+	start.click();
 });
